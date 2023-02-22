@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .cats {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .cat {
+            border: 1px solid black;
+            padding: 15px;
+            width: 700px;
+        }
+
+        .cat_image {
+            width: 700px;
+            height: 450px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content"></div>
+
+    <script src="data.js"></script>
+    <script>
+        const elementCats = JSON.parse(catsInfo);
+        const content = document.querySelector('.content');
+
+        const cats = document.createElement('div');
+        cats.classList.add('cats');
+        content.appendChild(cats);
+
+        elementCats.forEach(element => {
+            const cat = document.createElement('div');
+            cat.classList.add('cat');
+            cats.appendChild(cat);
+
+            const catImage = document.createElement('img');
+            catImage.classList.add('cat_image');
+            catImage.src = element.src;
+            catImage.setAttribute('alt', element.alt);
+            cat.appendChild(catImage);
+
+            const catBreed = document.createElement('h2');
+            catBreed.classList.add('cat_name');
+            catBreed.textContent = element.breed;
+            cat.appendChild(catBreed);
+
+            const catInfo = document.createElement('p');
+            catInfo.classList.add('cat_info');
+            catInfo.textContent = element.info;
+            cat.appendChild(catInfo);
+        });
+    </script>
+</body>
+
+</html>
